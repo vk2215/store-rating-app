@@ -8,17 +8,23 @@ export const signup = async (req, res) => {
     console.log('Received signup request for:', email);
 
     try {
-        const existingUser = await db.User.findOne({ where: { email } });
-        if (existingUser) {
-            console.log('Signup failed: Email already exists.');
-            return res.status(409).json({ error: 'Email already exists.' });
+       
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]).{8,16}$/;
+        if (!passwordRegex.test(password)) {
+            console.log('Password validation failed on the backend.');
+            return res.status(400).json({ 
+                errors: [{ 
+                    path: 'password', 
+                    message: 'Password must be 8-16 characters, with at least one uppercase and one special character or number.' 
+                }] 
+            });
         }
-
-        console.log('No existing user found. Hashing password...');
+        
+        
         const hashedPassword = await bcrypt.hash(password, 10);
         
-        console.log('Creating new user in the database...');
-        await db.User.create({
+        
+        const newUser = await db.User.create({
             name,
             email,
             password: hashedPassword,
@@ -27,12 +33,34 @@ export const signup = async (req, res) => {
         });
 
         console.log('User created successfully!');
-        res.status(201).json({ message: 'User registered successfully!' });
+        const token = jwt.sign({ id: newUser.id, role: newUser.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({ 
+            message: 'User registered successfully!', 
+            token, 
+            user: { id: newUser.id, name: newUser.name, role: newUser.role } 
+        });
+
     } catch (error) {
         console.error('Signup error:', error);
+        
+        if (error instanceof ValidationError) {
+            const errors = error.errors.map(err => ({
+                path: err.path,
+                message: err.message
+            }));
+            console.log('Validation failed:', errors);
+            return res.status(400).json({ errors });
+        }
+        
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            console.log('Signup failed: Email already exists.');
+            return res.status(409).json({ errors: [{ path: 'email', message: 'Email already exists.' }] });
+        }
+
         res.status(500).json({ error: 'Server error', details: error.message });
     }
 };
+
 export const login = async (req, res) => {
     const { email, password } = req.body;
     try {

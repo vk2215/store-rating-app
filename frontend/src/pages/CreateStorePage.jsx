@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CreateStorePage = () => {
     const { authAxios } = useAuth();
     const [name, setName] = useState('');
+    const [email, setEmail] = useState(''); 
     const [address, setAddress] = useState('');
     const [storeOwnerId, setStoreOwnerId] = useState('');
     const [storeOwners, setStoreOwners] = useState([]);
@@ -12,7 +13,6 @@ const CreateStorePage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    
     useEffect(() => {
         const fetchStoreOwners = async () => {
             try {
@@ -30,12 +30,14 @@ const CreateStorePage = () => {
         setMessage('');
         setError('');
         try {
-           
-            await authAxios.post('/admin/stores', { name, location: address, store_owner_id: storeOwnerId });
+            
+            await authAxios.post('/admin/stores', { name, email, address, store_owner_id: storeOwnerId });
             setMessage('Store created successfully!');
             setName('');
+            setEmail('');
             setAddress('');
             setStoreOwnerId('');
+            navigate('/admin/stores/list');
         } catch (err) {
             setError(err.response?.data?.error || 'Failed to create store.');
         }
@@ -50,6 +52,10 @@ const CreateStorePage = () => {
                 <div className="mb-4">
                     <label className="block text-gray-700">Store Name</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full mt-1 p-2 border rounded" required />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700">Email</label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full mt-1 p-2 border rounded" required />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700">Address</label>

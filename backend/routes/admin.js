@@ -13,16 +13,16 @@ const router = Router();
 
 router.use(authenticateToken, checkRole('System Administrator'));
 
-// This route serves the specific dashboard stats the frontend is requesting
+
 router.get('/dashboard/stats', getDashboardStats);
 
-// This route serves the list of store owners for your CreateStorePage
+
 router.get('/users/store-owners', getStoreOwnerList);
 
+router.post('/users/create', createUser);
 
-//other admin routes
+
 router.post('/stores', createStore);
-router.post('/users', createUser);
 router.get('/stores/list', listStores);
 router.get('/users/list', listUsers);
 

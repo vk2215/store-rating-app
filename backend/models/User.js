@@ -12,7 +12,7 @@ export default (sequelize) => {
       type: DataTypes.STRING(60),
       allowNull: false,
       validate: {
-        len: [20, 60]
+        len: [20, 60] 
       }
     },
     email: {
@@ -23,21 +23,10 @@ export default (sequelize) => {
         isEmail: true
       }
     },
-   password: {
+    password: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      validate: {
-        
-        len: {
-          args: [8, 16],
-          msg: 'Password must be between 8 and 16 characters long.'
-        },
-        
-        is: {
-          args: /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]).{8,16}$/,
-          msg: 'Password must contain at least one uppercase letter and one special character or number.'
-        }
-      }
+      
     },
     address: {
       type: DataTypes.STRING(400),
