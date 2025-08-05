@@ -8,7 +8,7 @@ const Signup = () => {
         email: '',
         password: '',
         address: '',
-        // Corrected: Added 'role' to the state
+        
         role: 'Normal User',
     });
     const [message, setMessage] = useState('');
@@ -22,7 +22,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Corrected: Sending all formData fields, including role
+           
             await axios.post('http://localhost:5000/api/auth/signup', formData);
             setMessage('Registration successful! You can now log in.');
             setError('');
@@ -58,7 +58,7 @@ const Signup = () => {
                         <label className="block text-gray-700">Address</label>
                         <input type="text" name="address" className="w-full mt-1 p-2 border rounded" onChange={handleChange} required />
                     </div>
-                    {/* Corrected: Added a role selection field */}
+                   
                     <div className="mb-4">
                         <label className="block text-gray-700">Role</label>
                         <select

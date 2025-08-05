@@ -25,7 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           
-          {/* Main Redirect logic after login will be handled in Login.jsx */}
+         
           <Route path="/" element={<Navigate to="/login" />} />
 
           {/* Normal User Routes */}
@@ -43,10 +43,10 @@ function App() {
           <Route path="/store-owner/dashboard" element={<PrivateRoute role="Store Owner"><StoreOwnerDashboard /></PrivateRoute>} />
           <Route path="/store-owner/update-password" element={<PrivateRoute role="Store Owner"><StoreOwnerPasswordPage /></PrivateRoute>} />
 
-          {/* General Private Routes */}
+          
           <Route path="/account" element={<PrivateRoute role={['Normal User', 'Store Owner', 'System Administrator']}><AccountPage /></PrivateRoute>} />
 
-          {/* Fallback route for unmatched paths */}
+         
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
       </div>

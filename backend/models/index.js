@@ -5,7 +5,7 @@ import RatingModel from './Rating.js';
 
 const db = {};
 
-// Export both the sequelize instance AND the Sequelize library
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
@@ -13,7 +13,7 @@ db.User = UserModel(sequelize);
 db.Store = StoreModel(sequelize);
 db.Rating = RatingModel(sequelize);
 
-// Define associations
+
 db.User.hasMany(db.Store, { foreignKey: 'store_owner_id', as: 'ownedStores' });
 db.Store.belongsTo(db.User, { foreignKey: 'store_owner_id', as: 'owner' });
 

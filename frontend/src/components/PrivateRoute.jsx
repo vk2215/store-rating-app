@@ -6,7 +6,7 @@ const PrivateRoute = ({ children, role }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>; // You can replace this with a loading spinner
+    return <div>Loading...</div>; 
   }
 
   if (!user) {
@@ -14,12 +14,12 @@ const PrivateRoute = ({ children, role }) => {
   }
 
   if (Array.isArray(role) && !role.includes(user.role)) {
-    // Redirect to a dashboard if the user's role is not allowed
+    
     return <Navigate to="/dashboard" />;
   }
 
   if (typeof role === 'string' && user.role !== role) {
-    // Redirect to a dashboard if the user's role is not allowed
+    
     return <Navigate to="/dashboard" />;
   }
 

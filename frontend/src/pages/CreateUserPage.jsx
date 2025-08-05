@@ -25,8 +25,7 @@ const CreateUserPage = () => {
             setPassword('');
             setAddress('');
             setRole('Normal User');
-            // Optionally, navigate to the user list
-            // navigate('/admin/users/list');
+            
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to create user.');
         }

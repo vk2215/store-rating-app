@@ -26,7 +26,7 @@ export const listStores = async (req, res) => {
         });
         res.status(200).json(stores);
     } catch (error) {
-        console.error(error); // Log the full error for debugging
+        console.error(error); 
         res.status(500).json({ error: 'Server error', details: error.message });
     }
 };

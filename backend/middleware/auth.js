@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import db from '../models/index.js';
 
-// Middleware to authenticate the token and find the user
+
 export const authenticateToken = async (req, res, next) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
@@ -24,7 +24,7 @@ export const authenticateToken = async (req, res, next) => {
     }
 };
 
-// Middleware to check if the user has a specific role
+
 export const checkRole = (role) => {
     return (req, res, next) => {
         if (req.user && req.user.role === role) {

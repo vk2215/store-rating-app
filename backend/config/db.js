@@ -22,7 +22,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   logging: console.log,
 });
 
-// Export both the sequelize instance and the Sequelize library
+
 export { sequelize, Sequelize };
 
 

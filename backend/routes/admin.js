@@ -6,7 +6,7 @@ import {
     createStore, 
     listUsers, 
     listStores,
-    getStoreOwnerList // You will need to create this function in your controller
+    getStoreOwnerList 
 } from '../controllers/adminController.js';
 
 const router = Router();
@@ -20,7 +20,7 @@ router.get('/dashboard/stats', getDashboardStats);
 router.get('/users/store-owners', getStoreOwnerList);
 
 
-// Your other admin routes
+//other admin routes
 router.post('/stores', createStore);
 router.post('/users', createUser);
 router.get('/stores/list', listStores);

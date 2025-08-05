@@ -37,7 +37,7 @@ const NormalUserDashboard = () => {
         try {
             await authAxios.post('/normal-user/ratings', { storeId, rating });
             setMessage(`Rating submitted for store ID ${storeId}`);
-            fetchStores(); // Refresh the list
+            fetchStores(); 
         } catch (err) {
             setError('Failed to submit rating.'+err);
         }

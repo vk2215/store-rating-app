@@ -13,7 +13,7 @@ const StoreOwnerDashboard = () => {
                 const res = await authAxios.get('/store-owner/dashboard');
                 setDashboardData(res.data);
             } catch (err) {
-                // This is the new, more specific error handling
+                
                 if (err.response) {
                     setError(`Error: ${err.response.data.error}`);
                 } else if (err.request) {

@@ -12,8 +12,7 @@ const CreateStorePage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // The backend endpoint for this needs to be created
-    // We will add this in the next step
+    
     useEffect(() => {
         const fetchStoreOwners = async () => {
             try {
@@ -31,7 +30,7 @@ const CreateStorePage = () => {
         setMessage('');
         setError('');
         try {
-            // Correct POST endpoint: /admin/stores, not /admin/stores/create
+           
             await authAxios.post('/admin/stores', { name, location: address, store_owner_id: storeOwnerId });
             setMessage('Store created successfully!');
             setName('');

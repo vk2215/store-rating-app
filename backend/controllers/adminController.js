@@ -102,14 +102,14 @@ export const listUsers = async (req, res) => {
     }
 };
 
-// New function to fetch a list of store owners
+
 export const getStoreOwnerList = async (req, res) => {
     try {
         const storeOwners = await db.User.findAll({
             where: {
                 role: 'Store Owner'
             },
-            attributes: ['id', 'name', 'email'] // Fetch only necessary fields
+            attributes: ['id', 'name', 'email'] 
         });
         res.status(200).json(storeOwners);
     } catch (error) {
