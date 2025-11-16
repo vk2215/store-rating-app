@@ -6,7 +6,6 @@ import { listStores, submitRating, updatePassword } from '../controllers/normalU
 const router = Router();
 
 router.use(authenticateToken, checkRole('Normal User'));
-
 router.get('/stores/list', listStores);
 router.post('/ratings', submitRating);
 router.put('/password', updatePassword);
