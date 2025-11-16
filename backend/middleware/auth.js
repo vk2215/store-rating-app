@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import db from '../models/index.js';
 
-
 export const authenticateToken = async (req, res, next) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
@@ -23,7 +22,6 @@ export const authenticateToken = async (req, res, next) => {
         res.status(401).json({ error: 'Invalid token.' });
     }
 };
-
 
 export const checkRole = (role) => {
     return (req, res, next) => {
