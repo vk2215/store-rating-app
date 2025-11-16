@@ -4,6 +4,7 @@ A full-stack web application that allows users to rate stores with role-based ac
 
 Users can register, log in, rate stores from 1 to 5 ⭐, and manage dashboards based on their role.
 
+![App Screenshot](/screenshot.png)
 ---
 
 ## 🚀 Tech Stack
