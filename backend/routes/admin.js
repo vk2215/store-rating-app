@@ -13,9 +13,7 @@ const router = Router();
 
 router.use(authenticateToken, checkRole('System Administrator'));
 
-
 router.get('/dashboard/stats', getDashboardStats);
-
 
 router.get('/users/store-owners', getStoreOwnerList);
 
