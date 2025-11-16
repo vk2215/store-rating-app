@@ -54,7 +54,7 @@ export const submitRating = async (req, res) => {
 export const updatePassword = async (req, res) => {
     const { new_password } = req.body;
     try {
-        // Implement password validation here
+       
         const hashedPassword = await bcrypt.hash(new_password, 10);
         await req.user.update({ password: hashedPassword });
         res.status(200).json({ message: 'Password updated successfully.' });
