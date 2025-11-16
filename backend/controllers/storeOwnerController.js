@@ -34,7 +34,6 @@ export const getDashboard = async (req, res) => {
         res.status(500).json({ error: 'Server error', details: error.message });
     }
 };
-
 export const updatePassword = async (req, res) => {
     const { new_password } = req.body;
     try {
