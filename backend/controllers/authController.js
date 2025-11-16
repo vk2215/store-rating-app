@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import db from '../models/index.js';
 import { ValidationError } from 'sequelize';
 
+
 export const signup = async (req, res) => {
     const { name, email, password, address, role } = req.body;
     console.log('Received signup request for:', email);
