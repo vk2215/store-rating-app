@@ -8,7 +8,6 @@ const db = {};
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
 db.User = UserModel(sequelize);
 db.Store = StoreModel(sequelize);
 db.Rating = RatingModel(sequelize);
