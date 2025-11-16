@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import db from '../models/index.js';
-import { ValidationError } from 'sequelize'; // This line was missing
+import { ValidationError } from 'sequelize'; 
 
 export const getDashboardStats = async (req, res) => {
     try {
